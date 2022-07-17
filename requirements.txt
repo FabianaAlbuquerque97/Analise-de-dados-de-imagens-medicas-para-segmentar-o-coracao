@@ -1,0 +1,7 @@
+pillow
+pandas
+tensorflow
+numpy
+medpy
+med2image
+pfmisc
