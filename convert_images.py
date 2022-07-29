@@ -30,12 +30,36 @@ filenames = [
     'la_030',
 ]
 
-for filename in filenames:
+def convert_all_files_to_png():
+    for filename in filenames:
+        filename_path = os.path.join(input_dir, filename + '.nii')
+        img = nib.load(filename_path)
+        img_fdata = img.get_fdata()
+
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        output_file = os.path.join(output_dir, filename + '.png')
+        plt.imsave(output_file, img_fdata[:, :, image_position])
+
+
+def generate_diff_sections(sections):
+    output_dir = 'samplesPNG'
+    filename = 'la_003'
     filename_path = os.path.join(input_dir, filename + '.nii')
     img = nib.load(filename_path)
     img_fdata = img.get_fdata()
 
     if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    output_file = os.path.join(output_dir, filename + '.png')
-    plt.imsave(output_file, img_fdata[:, :, image_position])
+            os.makedirs(output_dir)
+    for section in sections:
+        output_file = os.path.join(output_dir, filename + '-{:03}'.format(section) + '.png')
+        plt.imsave(output_file, img_fdata[:, :, section])
+
+def generate_sections():
+    i = 0
+    while i < 130:
+        yield i
+        i += 5
+
+#convert_all_files_to_png()
+generate_diff_sections(generate_sections())
