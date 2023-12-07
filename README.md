@@ -1,4 +1,4 @@
-# Análise de Dados de Imagens Médicas para Segmentação da Imagem do Coração:chart_with_upwards_trend:
+# Análise de Dados de Imagens Médicas para Segmentação da Imagem do Coração:
 ## **Projeto PIBIC**
 
 
